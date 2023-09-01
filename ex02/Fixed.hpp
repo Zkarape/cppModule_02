@@ -7,7 +7,7 @@
 #include <stdbool.h>
 #include <limits>
 
-#define EPSILON 0.01
+#define EPSILON 1
 
 class Fixed
 {
