@@ -1,4 +1,4 @@
-NAME      = fixed01
+NAME      = fixed02
 
 CC        = g++ 
 

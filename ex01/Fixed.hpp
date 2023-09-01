@@ -4,8 +4,6 @@
 #include <iostream>
 #include <cmath>
 #include <cstdio>
-#include <stdbool.h>
-#include <limits>
 
 class Fixed
 {
@@ -24,16 +22,6 @@ public:
     int toInt(void) const;
     Fixed &operator=(const Fixed &other);
     ~Fixed();
-    bool operator<(const Fixed &obj) const;
-    bool operator>(const Fixed &obj) const;
-    bool operator<=(const Fixed &obj) const;
-    bool operator>=(const Fixed &obj) const;
-    bool operator==(const Fixed &obj) const;
-    bool operator!=(const Fixed &obj) const;
-    float operator+(const Fixed &obj) const;
-    float operator-(const Fixed &obj) const;
-    float operator*(const Fixed &obj) const;
-    float operator/(const Fixed &obj) const;
 };
 
 std::ostream &operator<<(std::ostream &o, const Fixed &obj);

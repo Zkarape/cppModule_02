@@ -4,6 +4,10 @@
 #include <iostream>
 #include <cmath>
 #include <cstdio>
+#include <stdbool.h>
+#include <limits>
+
+#define EPSILON 0.01
 
 class Fixed
 {
@@ -22,6 +26,24 @@ public:
     int toInt(void) const;
     Fixed &operator=(const Fixed &other);
     ~Fixed();
+    bool operator<(const Fixed &obj) const;
+    bool operator>(const Fixed &obj) const;
+    bool operator<=(const Fixed &obj) const;
+    bool operator>=(const Fixed &obj) const;
+    bool operator==(const Fixed &obj) const;
+    bool operator!=(const Fixed &obj) const;
+    float operator+(const Fixed &obj) const;
+    float operator-(const Fixed &obj) const;
+    float operator*(const Fixed &obj) const;
+    float operator/(const Fixed &obj) const;
+    Fixed &operator++();
+    Fixed operator++(int);
+    Fixed &operator--();
+    Fixed operator--(int);
+    static Fixed &min(Fixed &nmb1, Fixed &nmb2);
+    static const Fixed &min(const Fixed &nmb1, const Fixed &nmb2);
+    static Fixed &max(Fixed &nmb1, Fixed &nmb2);
+    static const Fixed &max(const Fixed &nmb1, const Fixed &nmb2);
 };
 
 std::ostream &operator<<(std::ostream &o, const Fixed &obj);

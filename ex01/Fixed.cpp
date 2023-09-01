@@ -1,62 +1,31 @@
 #include "Fixed.hpp"
 
-bool Fixed::operator<(const Fixed &obj) const
+Fixed::Fixed(const float x) : _fixedPointValue(roundf((x * pow(2, nmbOfFractionalBits))))
 {
-    return (_fixedPointValue < obj._fixedPointValue);
+    std::cout << "Float constructor called" << std::endl;
+    // e.g. 5 to 5.00 becomes 20 because 20 = 5*2^2
 }
 
-bool Fixed::operator>(const Fixed &obj) const
+Fixed::Fixed(const Fixed &other)
 {
-    return (_fixedPointValue > obj._fixedPointValue);
+    *this = other;
+    std::cout << "Copy constructor called" << std::endl;
 }
 
-bool Fixed::operator<=(const Fixed &obj) const
+Fixed::~Fixed()
 {
-    return (_fixedPointValue < obj._fixedPointValue);
+    std::cout << "Destructor called" << std::endl;
 }
 
-bool Fixed::operator>=(const Fixed &obj) const
-{
-    return (_fixedPointValue > obj._fixedPointValue);
-}
+#include "Fixed.hpp"
 
-bool Fixed::operator==(const Fixed &obj) const
-{
-    return (_fixedPointValue == obj._fixedPointValue);
-}
-
-bool Fixed::operator!=(const Fixed &obj) const
-{
-    return (_fixedPointValue != obj._fixedPointValue);
-}
-
-std::ostream &operator<<(std::ostream &os, const Fixed &obj)
+std::ostream& operator<<(std::ostream &os, const Fixed &obj)
 {
     os << obj.toFloat();
     return (os);
 }
 
-float Fixed::operator+(const Fixed &obj) const
-{
-    return (_fixedPointValue + obj._fixedPointValue);
-}
-
-float Fixed::operator-(const Fixed &obj) const
-{
-    return (_fixedPointValue - obj._fixedPointValue);
-}
-
-float Fixed::operator*(const Fixed &obj) const
-{
-    return (_fixedPointValue * obj._fixedPointValue);
-}
-
-float Fixed::operator/(const Fixed &obj) const
-{
-    return (_fixedPointValue / obj._fixedPointValue);
-}
-
-Fixed &Fixed::operator=(const Fixed &other)
+Fixed& Fixed::operator=(const Fixed &other)
 {
     std::cout << "Assignation operator called" << std::endl;
     if (this == &other)
@@ -87,23 +56,23 @@ int Fixed::toInt(void) const
     return (_fixedPointValue / pow(2, nmbOfFractionalBits));
 }
 
-Fixed::Fixed() : _fixedPointValue(0)
+Fixed::Fixed(): _fixedPointValue(0)
 {
     std::cout << "Default constructor called" << std::endl;
 }
 Fixed::Fixed(const int x)
 {
     std::cout << "Int constructor called" << std::endl;
-    _fixedPointValue = x * pow(2, nmbOfFractionalBits); // e.g. 5 to 5.00 becomes 20 because 20 = 5*2^2
+    _fixedPointValue = x * pow(2, nmbOfFractionalBits);//e.g. 5 to 5.00 becomes 20 because 20 = 5*2^2
 }
 
-Fixed::Fixed(const float x) : _fixedPointValue(roundf((x * pow(2, nmbOfFractionalBits))))
+Fixed::Fixed(const float x): _fixedPointValue(roundf((x * pow(2, nmbOfFractionalBits))))
 {
-    std::cout << "Float constructor called" << std::endl;
-    // e.g. 5 to 5.00 becomes 20 because 20 = 5*2^2
+    std::cout << "Float constructor called" <<std::endl;
+    //e.g. 5 to 5.00 becomes 20 because 20 = 5*2^2
 }
 
-Fixed::Fixed(const Fixed &other) : _fixedPointValue(other._fixedPointValue)
+Fixed::Fixed(const Fixed &other): _fixedPointValue(other._fixedPointValue)
 {
     std::cout << "Copy constructor called" << std::endl;
 }
