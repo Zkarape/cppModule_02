@@ -64,18 +64,18 @@ Fixed::Fixed(const int x)
     _fixedPointValue = x * pow(2, nmbOfFractionalBits);//e.g. 5 to 5.00 becomes 20 because 20 = 5*2^2
 }
 
-Fixed::Fixed(const float x): _fixedPointValue(roundf((x * pow(2, nmbOfFractionalBits))))
-{
-    std::cout << "Float constructor called" <<std::endl;
-    //e.g. 5 to 5.00 becomes 20 because 20 = 5*2^2
-}
+// Fixed::Fixed(const float x): _fixedPointValue(roundf((x * pow(2, nmbOfFractionalBits))))
+// {
+//     std::cout << "Float constructor called" <<std::endl;
+//     //e.g. 5 to 5.00 becomes 20 because 20 = 5*2^2
+// }
 
-Fixed::Fixed(const Fixed &other): _fixedPointValue(other._fixedPointValue)
-{
-    std::cout << "Copy constructor called" << std::endl;
-}
+// Fixed::Fixed(const Fixed &other): _fixedPointValue(other._fixedPointValue)
+// {
+//     std::cout << "Copy constructor called" << std::endl;
+// }
 
-Fixed::~Fixed()
-{
-    std::cout << "Destructor called" << std::endl;
-}
+// Fixed::~Fixed()
+// {
+//     std::cout << "Destructor called" << std::endl;
+// }
