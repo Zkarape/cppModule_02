@@ -7,8 +7,6 @@
 #include <stdbool.h>
 #include <limits>
 
-#define EPSILON 1
-
 class Fixed
 {
 private:
