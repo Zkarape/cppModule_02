@@ -1,5 +1,27 @@
 #include "Fixed.hpp"
 
+Fixed::Fixed():_fixedPointValue(0)
+{
+    // std::cout << "Default constructor called" << std::endl;
+}
+
+Fixed::Fixed(const int x)
+{
+    // std::cout << "Int constructor called" << std::endl;
+    _fixedPointValue = x << this->nmbOfFractionalBits; // e.g. 5 to 5.00 becomes 20 because 20 = 5*2^2
+}
+
+Fixed::Fixed(const float x):_fixedPointValue(roundf((x * (1 << this->nmbOfFractionalBits))))
+{
+    // std::cout << "Float constructor called" <<std::endl;
+    //e.g. 5 to 5.00 becomes 20 because 20 = 5*2^2
+}
+
+Fixed::Fixed(const Fixed &other):_fixedPointValue(other._fixedPointValue)
+{
+    // std::cout << "Copy constructor called" << std::endl;
+}
+
 bool Fixed::operator<(const Fixed &obj) const
 {
     return (toFloat() < obj.toFloat());
@@ -124,7 +146,7 @@ Fixed &Fixed::operator=(const Fixed &other)
 int Fixed::getRawBits(void) const
 {
     // std::cout << "getRawBits member function called" << std::endl;
-    return (_fixedPointValue);
+    return (toFloat());
 }
 
 void Fixed::setRawBits(int const raw)
@@ -140,29 +162,7 @@ float Fixed::toFloat(void) const
 
 int Fixed::toInt(void) const
 {
-    return (_fixedPointValue >> this->nmbOfFractionalBits);
-}
-
-Fixed::Fixed():_fixedPointValue(0)
-{
-    // std::cout << "Default constructor called" << std::endl;
-}
-
-Fixed::Fixed(const int x)
-{
-    // std::cout << "Int constructor called" << std::endl;
-    _fixedPointValue = x * (1 << this->nmbOfFractionalBits); // e.g. 5 to 5.00 becomes 20 because 20 = 5*2^2
-}
-
-Fixed::Fixed(const float x):_fixedPointValue(roundf((x * (1 << this->nmbOfFractionalBits))))
-{
-    // std::cout << "Float constructor called" <<std::endl;
-    //e.g. 5 to 5.00 becomes 20 because 20 = 5*2^2
-}
-
-Fixed::Fixed(const Fixed &other):_fixedPointValue(other._fixedPointValue)
-{
-    // std::cout << "Copy constructor called" << std::endl;
+    return (_fixedPointValue / pow(2, nmbOfFractionalBits));
 }
 
 Fixed::~Fixed()

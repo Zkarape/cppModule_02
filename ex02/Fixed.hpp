@@ -14,7 +14,6 @@ class Fixed
 private:
     int _fixedPointValue;
     static const int nmbOfFractionalBits = 8;
-
 public:
     Fixed();
     Fixed(const int x);
